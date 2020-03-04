@@ -1,28 +1,19 @@
-import { createStore } from './redux'
+import store from './redux/store'
 
-//Este reducer se ejecuta dentro de la funcion dispatch del store, y lo que sea que retorne es el nuevo estado de la app
-function reducer(state = {}, action) {
-  switch (action.type) {
-    case 'NUEVA':
-      return action.payload
-    default:
-      return state
-  }
+
+function updateItems(items){
+  console.log(items)
+  console.log('holaaaaaa')
 }
 
-const store = createStore(reducer)
-
-//Agregar la funcion flecha a los suscribers, (Funciones ejecutadas cuando el estado cambia)
-store.suscribe(() => {
-  console.log('Se ejecutó la función flecha suscrita en el store')
+store.subscribe(() => {
+  console.log(store.getState())
   const state = store.getState()
-  console.log(state)
+  updateItems(state)
 })
 
+
 store.dispatch({
-  type: 'NUEVA',
-  payload: {
-    nombre: 'Pepito',
-    apellido: 'Perez'
-  }
+  type: 'ADD',
+  payload: {text: 'hola'}
 })
