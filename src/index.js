@@ -56,7 +56,7 @@ store.subscribe(() => {
 
 
 //Precargar acciones
-const actions = JSON.parse(localStorage.getItem('actions') || [])
+const actions = JSON.parse(localStorage.getItem('actions')) || []
 
 actions.forEach((action, i) => {
   setTimeout(() => {
