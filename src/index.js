@@ -48,7 +48,18 @@ function updateItems(items) {
   }
 }
 
+//Suscribirse al store y callback en cada cambio de estado
 store.subscribe(() => {
   const state = store.getState()
   updateItems(state)
 })
+
+
+//Precargar acciones
+const actions = JSON.parse(localStorage.getItem('actions') || [])
+
+actions.forEach((action, i) => {
+  setTimeout(() => {
+    store.dispatch(action)
+  }, i * 1000)
+});
